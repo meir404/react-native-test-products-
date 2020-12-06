@@ -12,26 +12,26 @@ import {
 } from 'react-native';
 let initialProducts = [];
 export default function App() {
-  
+
   useEffect(() => {
     getData();
   }, []);
-  
+
   const [search, setSearch] = useState("");
   const [refreshing, setRefreshing] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
-  
+
   const [products, setProducts] = useState(initialProducts)
   const getData = (isRefresh) => {
-    isRefresh ? setRefreshing(true) : setLoading(true);
+    loadingRefresh(isRefresh, true);
     //fetch('https://bq18d.sse.codesandbox.io/products').then(p =>
     //  p.json()
     //).then(p => {
-      isRefresh ? setRefreshing(false) : setLoading(false);
-      setSearch("");
-      initialProducts = productsOr;
-      setProducts(initialProducts);
+    setSearch("");
+    initialProducts = productsOr;
+    setProducts(initialProducts);
+    loadingRefresh(isRefresh, false);
     // });
   }
   const renderItem = ({ item }) => (
@@ -41,11 +41,14 @@ export default function App() {
     setSearch(text);
     setProducts(initialProducts.filter(p => p.title.toLowerCase().includes(search.toLowerCase())));
   }
+  const loadingRefresh = (isRefresh, value) => {
+    isRefresh ? setRefreshing(value) : setLoading(value);
+  }
 
   const [loadingFont] = useFonts({
     Allan_400Regular,
   });
-  if(!loadingFont){
+  if (!loadingFont) {
     return <ActivityIndicator style={styles.loading} size="large" color="#00ff00" />;
   }
   return (
