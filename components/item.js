@@ -5,13 +5,13 @@ import GreenButton from './greenButton';
 import { share } from '../services/shareService'
 
 
-export default function item({ product }) {
+export default function item({ product, navigation }) {
     const [loading, setLoading] = useState(false);
     const shareButton = () => {
         return loading ? <ActivityIndicator style={styles.loading} size="large" color="#00ff00" /> :
             <GreenButton title="Share" clickFun={async () => {
                 setLoading(true);
-                await share(product.image,product.title);
+                await share(product.image, product.title);
                 setLoading(false);
 
             }}></GreenButton>;
@@ -28,8 +28,8 @@ export default function item({ product }) {
             </View>
             <View style={styles.buttonBuyView}>
                 {/* <Button title="Buy" style={styles.buttonBuy}/> */}
-                <GreenButton title="Buy" clickFun={() => { console.log("buy") }}></GreenButton>
-                { shareButton()}
+                <GreenButton title="Details" clickFun={() => { navigation.navigate('Product', { product: product }) }}></GreenButton>
+                {shareButton()}
             </View>
         </View>
     );

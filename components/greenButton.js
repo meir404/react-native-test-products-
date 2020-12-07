@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, Pressable } from 'react-native'
 import { styles } from '../styles/style'
 
-export default function GreenButton({ title, clickFun}) {
+export default function GreenButton({ title, clickFun,style}) {
     return (
         <Pressable
             onPress={clickFun}
@@ -12,7 +12,7 @@ export default function GreenButton({ title, clickFun}) {
                         ? '#1e9e1e7d'
                         : '#1e9e1e'
                 },
-                styles.wrapperCustom
+                styles.wrapperCustom,style
             ]}>
             {({ pressed }) => (
                 <Text style={[styles.text, styles.textWhite]}>
