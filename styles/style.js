@@ -19,6 +19,20 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
     },
+    searchContainer: {
+        flex:0,
+        padding:8,
+        backgroundColor: "#ffffff",
+        justifyContent:"center",
+        alignItems:"center",
+        flexDirection:"row-reverse"
+    },
+    searchInput: {
+        width: '70%',
+        height: 40, borderColor: 'gray', borderWidth: 1,
+        borderRadius:12,
+        margin:3
+    },
     product: {
         flex: 1,
         flexDirection: "column",

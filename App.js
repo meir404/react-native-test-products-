@@ -55,19 +55,26 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       {/* <Text style={{fontSize:20}}>my app</Text> */}
       {loading ? <ActivityIndicator style={styles.loading} size="large" color="#00ff00" /> :
-        <><TextInput
-          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-          onChangeText={text => onChangeText(text)}
-          value={search}
-        />
+        <>
+        
           <FlatList
+            style={{flex:2}}
             refreshControl={
-              <RefreshControl refreshing={refreshing} onRefresh={() => getData(true)} />
-            }
+            <RefreshControl refreshing={refreshing} onRefresh={() => getData(true)} />
+          }
             data={products}
             renderItem={renderItem}
             keyExtractor={item => item.id.toString()}
-          /></>}
+          />
+            <View style={styles.searchContainer}>
+            <Text>Search:</Text>
+            <TextInput
+              style={styles.searchInput}
+              onChangeText={text => onChangeText(text)}
+              value={search}
+            />
+          </View>
+          </>}
     </SafeAreaView  >
   );
 }
