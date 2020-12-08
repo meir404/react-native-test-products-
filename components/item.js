@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react'
-import { Text, View, Image, ActivityIndicator } from 'react-native';
+import { Text, View, Image, ActivityIndicator ,TouchableOpacity} from 'react-native';
 import { styles } from '../styles/style';
 import GreenButton from './greenButton';
 import { share } from '../services/shareService'
@@ -19,7 +19,9 @@ export default function item({ product, navigation }) {
     return (
 
         <View style={styles.product}>
-            <Image style={styles.image} source={{ uri: product.image }} />
+            <TouchableOpacity activeOpacity={.5} onPress={() => { navigation.navigate('Product', { product: product }) }}>
+                <Image  style={styles.image} source={{ uri: product.image }} />
+            </TouchableOpacity>
             <View>
                 <Text style={[styles.text]}>{product.title}</Text>
             </View>
